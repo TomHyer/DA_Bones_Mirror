@@ -1,0 +1,477 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{70D87AD3-929E-44C3-96C4-1675280BEB26}</ProjectGuid>
+    <RootNamespace>Bones</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST_DIR);$(JNI_DIR)\include;$(JNI_DIR)\include\win32</IncludePath>
+    <LibraryPath>$(BOOST_DIR)\stage\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(PYTHON_DIR)\libs</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST_DIR);$(JNI_DIR)\include;$(JNI_DIR)\include\win32</IncludePath>
+    <LibraryPath>$(BOOST_DIR)\stage\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(PYTHON_DIR)\libs</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST_DIR);$(JNI_DIR)\include;$(JNI_DIR)\include\win32</IncludePath>
+    <LibraryPath>$(BOOST_DIR)\stage\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST_DIR);$(JNI_DIR)\include</IncludePath>
+    <LibraryPath>$(BOOST_DIR)\stage\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_WINDLL;_SCL_SECURE_NO_WARNINGS;_DEBUG;_HAS_ITERATOR_DEBUGGING=0;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PreBuildEvent>
+      <Command>$(MACHINIST_DIR)Machinist.exe -c Bones.ifc -l Bones.mgl</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Machine-generating code</Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_WINDLL;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PreBuildEvent>
+      <Command>$(MACHINIST_DIR)Machinist.exe -c Bones.ifc -l Bones.mgl</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Machine-generating code</Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_WINDLL;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PreBuildEvent>
+      <Command>$(MACHINIST_DIR)Machinist.exe -c Bones.ifc -l Bones.mgl</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Machine-generating code</Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_WINDLL;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PreBuildEvent>
+      <Command>$(MACHINIST_DIR)Machinist.exe -c Bones.ifc -l Bones.mgl</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Machine-generating code</Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="AccrualPeriod.h" />
+    <ClInclude Include="Algorithms.h" />
+    <ClInclude Include="AMC.h" />
+    <ClInclude Include="Archive.h" />
+    <ClInclude Include="Asset.h" />
+    <ClInclude Include="AssetModel.h" />
+    <ClInclude Include="AssetValue.h" />
+    <ClInclude Include="Audit.h" />
+    <ClInclude Include="BackwardInduction.h" />
+    <ClInclude Include="Bag.h" />
+    <ClInclude Include="Banded.h" />
+    <ClInclude Include="Basket.h" />
+    <ClInclude Include="BasketMoments.h" />
+    <ClInclude Include="BCG.h" />
+    <ClInclude Include="BermudanSwaption.h" />
+    <ClInclude Include="BFGS.h" />
+    <ClInclude Include="BKImp.h" />
+    <ClInclude Include="BlockDiagonal.h" />
+    <ClInclude Include="Boolean.h" />
+    <ClInclude Include="Box.h" />
+    <ClInclude Include="BuySell.h" />
+    <ClInclude Include="Cap.h" />
+    <ClInclude Include="CashTrade.h" />
+    <ClInclude Include="Cell.h" />
+    <ClInclude Include="CellUtils.h" />
+    <ClInclude Include="Cholesky.h" />
+    <ClInclude Include="CollateralType.h" />
+    <ClInclude Include="ComponentStep.h" />
+    <ClInclude Include="Composite.h" />
+    <ClInclude Include="Conventions.h" />
+    <ClInclude Include="CouponRate.h" />
+    <ClInclude Include="Credit.h" />
+    <ClInclude Include="Currency.h" />
+    <ClInclude Include="CurrencyData.h" />
+    <ClInclude Include="Date.h" />
+    <ClInclude Include="DateIncrement.h" />
+    <ClInclude Include="DateTime.h" />
+    <ClInclude Include="DateTimeUtils.h" />
+    <ClInclude Include="DateUtils.h" />
+    <ClInclude Include="DayBasis.h" />
+    <ClInclude Include="Decompositions.h" />
+    <ClInclude Include="DecompositionsMisc.h" />
+    <ClInclude Include="Default.h" />
+    <ClInclude Include="DefaultModel.h" />
+    <ClInclude Include="Dictionary.h" />
+    <ClInclude Include="Discount.h" />
+    <ClInclude Include="Distribution.h" />
+    <ClInclude Include="DistributionBlack.h" />
+    <ClInclude Include="DistributionUtils.h" />
+    <ClInclude Include="Eispack.h" />
+    <ClInclude Include="EnumDict.h" />
+    <ClInclude Include="Environment.h" />
+    <ClInclude Include="EquityOption.h" />
+    <ClInclude Include="EquityOptionSemianalytic.h" />
+    <ClInclude Include="EquityTrade.h" />
+    <ClInclude Include="Exceptions.h" />
+    <ClInclude Include="Facts.h" />
+    <ClInclude Include="FastGL.h" />
+    <ClInclude Include="File.h" />
+    <ClInclude Include="Fixings.h" />
+    <ClInclude Include="Flow.h" />
+    <ClInclude Include="Functionals.h" />
+    <ClInclude Include="FundingAdjustment.h" />
+    <ClInclude Include="FxTrade.h" />
+    <ClInclude Include="Globals.h" />
+    <ClInclude Include="Index.h" />
+    <ClInclude Include="IndexComposite.h" />
+    <ClInclude Include="IndexEquity.h" />
+    <ClInclude Include="IndexFx.h" />
+    <ClInclude Include="IndexIr.h" />
+    <ClInclude Include="IndexIV.h" />
+    <ClInclude Include="IndexParse.h" />
+    <ClInclude Include="IndexPath.h" />
+    <ClInclude Include="JSON.h" />
+    <ClInclude Include="LegBased.h" />
+    <ClInclude Include="LegSchedule.h" />
+    <ClInclude Include="Holiday.h" />
+    <ClInclude Include="HolidayData.h" />
+    <ClInclude Include="Host.h" />
+    <ClInclude Include="Interp.h" />
+    <ClInclude Include="InterpCubic.h" />
+    <ClInclude Include="LegParams.h" />
+    <ClInclude Include="LegTrade.h" />
+    <ClInclude Include="LVHWModel.h" />
+    <ClInclude Include="LVInterp.h" />
+    <ClInclude Include="LVModel.h" />
+    <ClInclude Include="LVSurface.h" />
+    <ClInclude Include="Maps.h" />
+    <ClInclude Include="Matrix.h" />
+    <ClInclude Include="MatrixArithmetic.h" />
+    <ClInclude Include="MatrixUtils.h" />
+    <ClInclude Include="MC.h" />
+    <ClInclude Include="MCPath.h" />
+    <ClInclude Include="Metropolis.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="NDArray.h" />
+    <ClInclude Include="Numerics.h" />
+    <ClInclude Include="Optionals.h" />
+    <ClInclude Include="OptionType.h" />
+    <ClInclude Include="Payment.h" />
+    <ClInclude Include="Payout.h" />
+    <ClInclude Include="PayoutDecorate.h" />
+    <ClInclude Include="PayoutEuropean.h" />
+    <ClInclude Include="PDE.h" />
+    <ClInclude Include="Period.h" />
+    <ClInclude Include="PeriodLength.h" />
+    <ClInclude Include="PiecewiseConstant.h" />
+    <ClInclude Include="PiecewiseLinear.h" />
+    <ClInclude Include="Platform.h" />
+    <ClInclude Include="Portfolio.h" />
+    <ClInclude Include="Quadrature.h" />
+    <ClInclude Include="QuasiRandom.h" />
+    <ClInclude Include="Random.h" />
+    <ClInclude Include="ReceivePay.h" />
+    <ClInclude Include="Report.h" />
+    <ClInclude Include="ReportUtils.h" />
+    <ClInclude Include="Risk.h" />
+    <ClInclude Include="Rootfind.h" />
+    <ClInclude Include="SDE.h" />
+    <ClInclude Include="SDEImp.h" />
+    <ClInclude Include="Semianalytic.h" />
+    <ClInclude Include="SemianalyticComposite.h" />
+    <ClInclude Include="SLAP.h" />
+    <ClInclude Include="SlideIR.h" />
+    <ClInclude Include="Smooth.h" />
+    <ClInclude Include="Sobol.h" />
+    <ClInclude Include="Sparse.h" />
+    <ClInclude Include="SparseUtils.h" />
+    <ClInclude Include="SpecialFunctions.h" />
+    <ClInclude Include="Splat.h" />
+    <ClInclude Include="SquareMatrix.h" />
+    <ClInclude Include="Step.h" />
+    <ClInclude Include="Storable.h" />
+    <ClInclude Include="Strict.h" />
+    <ClInclude Include="Strings.h" />
+    <ClInclude Include="StringUtils.h" />
+    <ClInclude Include="Swap.h" />
+    <ClInclude Include="SwapMath.h" />
+    <ClInclude Include="Swaption.h" />
+    <ClInclude Include="SwaptionCube.h" />
+    <ClInclude Include="Trade.h" />
+    <ClInclude Include="TradeAmount.h" />
+    <ClInclude Include="TradeComposite.h" />
+    <ClInclude Include="Underdetermined.h" />
+    <ClInclude Include="UnderdeterminedUtils.h" />
+    <ClInclude Include="Underlying.h" />
+    <ClInclude Include="Valuation.h" />
+    <ClInclude Include="ValuationMethod.h" />
+    <ClInclude Include="ValueHistorical.h" />
+    <ClInclude Include="ValueModel.h" />
+    <ClInclude Include="ValueRequest.h" />
+    <ClInclude Include="Vectors.h" />
+    <ClInclude Include="VHW.h" />
+    <ClInclude Include="VHWCalibrate.h" />
+    <ClInclude Include="VHWImp.h" />
+    <ClInclude Include="XLCALL.h" />
+    <ClInclude Include="YC.h" />
+    <ClInclude Include="YCComponent.h" />
+    <ClInclude Include="YcImp.h" />
+    <ClInclude Include="YCInstrument.h" />
+    <ClInclude Include="_Cookie.h" />
+    <ClInclude Include="_Excel.h" />
+    <ClInclude Include="_JNI.h" />
+    <ClInclude Include="_Python.h" />
+    <ClInclude Include="_Reader.h" />
+    <ClInclude Include="_Repository.h" />
+    <ClInclude Include="__Platform.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AccrualPeriod.cpp" />
+    <ClCompile Include="AMC.cpp" />
+    <ClCompile Include="Archive.cpp" />
+    <ClCompile Include="Audit.cpp" />
+    <ClCompile Include="BackwardInduction.cpp" />
+    <ClCompile Include="Bag.cpp" />
+    <ClCompile Include="Banded.cpp" />
+    <ClCompile Include="Basket.cpp" />
+    <ClCompile Include="BasketMoments.cpp" />
+    <ClCompile Include="BCG.cpp" />
+    <ClCompile Include="BFGS.cpp" />
+    <ClCompile Include="Box.cpp" />
+    <ClCompile Include="Bus252.cpp" />
+    <ClCompile Include="BuySell.cpp" />
+    <ClCompile Include="Cap.cpp" />
+    <ClCompile Include="CashTrade.cpp" />
+    <ClCompile Include="Cell.cpp" />
+    <ClCompile Include="CellUtils.cpp" />
+    <ClCompile Include="Cholesky.cpp" />
+    <ClCompile Include="CollateralType.cpp" />
+    <ClCompile Include="Conventions.cpp" />
+    <ClCompile Include="CouponRate.cpp" />
+    <ClCompile Include="Currency.cpp" />
+    <ClCompile Include="CurrencyData.cpp" />
+    <ClCompile Include="Date.cpp" />
+    <ClCompile Include="DateIncrement.cpp" />
+    <ClCompile Include="DateTime.cpp" />
+    <ClCompile Include="DateTimeUtils.cpp" />
+    <ClCompile Include="DateUtils.cpp" />
+    <ClCompile Include="DayBasis.cpp" />
+    <ClCompile Include="Decompositions.cpp" />
+    <ClCompile Include="DecompositionsMisc.cpp" />
+    <ClCompile Include="Default.cpp" />
+    <ClCompile Include="Dictionary.cpp" />
+    <ClCompile Include="Discount.cpp" />
+    <ClCompile Include="DistributionBlack.cpp" />
+    <ClCompile Include="DistributionUtils.cpp" />
+    <ClCompile Include="Eispack.cpp" />
+    <ClCompile Include="Environment.cpp" />
+    <ClCompile Include="EquityOptionSemianalytic.cpp" />
+    <ClCompile Include="EquityTrade.cpp" />
+    <ClCompile Include="Exceptions.cpp" />
+    <ClCompile Include="Facts.cpp" />
+    <ClCompile Include="FastGL.cpp" />
+    <ClCompile Include="File.cpp" />
+    <ClCompile Include="Fixings.cpp" />
+    <ClCompile Include="FxTrade.cpp" />
+    <ClCompile Include="Globals.cpp" />
+    <ClCompile Include="Holiday.cpp" />
+    <ClCompile Include="HolidayData.cpp" />
+    <ClCompile Include="Host.cpp" />
+    <ClCompile Include="Index.cpp" />
+    <ClCompile Include="IndexComposite.cpp" />
+    <ClCompile Include="IndexEquity.cpp" />
+    <ClCompile Include="IndexFX.cpp" />
+    <ClCompile Include="IndexIR.cpp" />
+    <ClCompile Include="IndexParse.cpp" />
+    <ClCompile Include="IndexPath.cpp" />
+    <ClCompile Include="Interp.cpp" />
+    <ClCompile Include="InterpCubic.cpp" />
+    <ClCompile Include="JSON.cpp" />
+    <ClCompile Include="LegBased.cpp" />
+    <ClCompile Include="LegParams.cpp" />
+    <ClCompile Include="LegSchedule.cpp" />
+    <ClCompile Include="LegTrade.cpp" />
+    <ClCompile Include="LVHWModel.cpp" />
+    <ClCompile Include="LVInterp.cpp" />
+    <ClCompile Include="LVModel.cpp" />
+    <ClCompile Include="MatrixUtils.cpp" />
+    <ClCompile Include="MatrixArithmetic.cpp" />
+    <ClCompile Include="MC.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="NDArray.cpp" />
+    <ClCompile Include="Numerics.cpp" />
+    <ClCompile Include="OptionType.cpp" />
+    <ClCompile Include="Payment.cpp" />
+    <ClCompile Include="Payout.cpp" />
+    <ClCompile Include="PayoutEuropean.cpp" />
+    <ClCompile Include="PDE.cpp" />
+    <ClCompile Include="PeriodLength.cpp" />
+    <ClCompile Include="PiecewiseConstant.cpp" />
+    <ClCompile Include="PiecewiseLinear.cpp" />
+    <ClCompile Include="Portfolio.cpp" />
+    <ClCompile Include="Quadrature.cpp" />
+    <ClCompile Include="QuasiRandom.cpp" />
+    <ClCompile Include="Random.cpp" />
+    <ClCompile Include="ReceivePay.cpp" />
+    <ClCompile Include="Report.cpp" />
+    <ClCompile Include="Risk.cpp" />
+    <ClCompile Include="Rootfind.cpp" />
+    <ClCompile Include="SDEImp.cpp" />
+    <ClCompile Include="Semianalytic.cpp" />
+    <ClCompile Include="SemianalyticComposite.cpp" />
+    <ClCompile Include="SLAP.cpp" />
+    <ClCompile Include="SlideIR.cpp" />
+    <ClCompile Include="Smooth.cpp" />
+    <ClCompile Include="Sobol.cpp" />
+    <ClCompile Include="Sparse.cpp" />
+    <ClCompile Include="SpecialFunctions.cpp" />
+    <ClCompile Include="Splat.cpp" />
+    <ClCompile Include="Storable.cpp" />
+    <ClCompile Include="Strings.cpp" />
+    <ClCompile Include="StringUtils.cpp" />
+    <ClCompile Include="Swap.cpp" />
+    <ClCompile Include="SwapMath.cpp" />
+    <ClCompile Include="Swaption.cpp" />
+    <ClCompile Include="SwaptionCube.cpp" />
+    <ClCompile Include="Trade.cpp" />
+    <ClCompile Include="TradeAmount.cpp" />
+    <ClCompile Include="TradeComposite.cpp" />
+    <ClCompile Include="Underdetermined.cpp" />
+    <ClCompile Include="Underlying.cpp" />
+    <ClCompile Include="Valuation.cpp" />
+    <ClCompile Include="ValuationMethod.cpp" />
+    <ClCompile Include="Vectors.cpp" />
+    <ClCompile Include="VHW.cpp" />
+    <ClCompile Include="VHWCalibrate.cpp" />
+    <ClCompile Include="VHWImp.cpp" />
+    <ClCompile Include="XLCALL.cpp" />
+    <ClCompile Include="YC.cpp" />
+    <ClCompile Include="YCComponent.cpp" />
+    <ClCompile Include="YCImp.cpp" />
+    <ClCompile Include="YCInstrument.cpp" />
+    <ClCompile Include="_Cookie.cpp" />
+    <ClCompile Include="_Excel.cpp" />
+    <ClCompile Include="_JNI.cpp" />
+    <ClCompile Include="_Python.cpp" />
+    <ClCompile Include="_Repository.cpp" />
+    <ClCompile Include="__Bag.cpp" />
+    <ClCompile Include="__Box.cpp" />
+    <ClCompile Include="__Date.cpp" />
+    <ClCompile Include="__Decompositions.cpp" />
+    <ClCompile Include="__EDISON.cpp" />
+    <ClCompile Include="__Fixings.cpp" />
+    <ClCompile Include="__Globals.cpp" />
+    <ClCompile Include="__Interp.cpp" />
+    <ClCompile Include="__Price.cpp" />
+    <ClCompile Include="__Repository.cpp" />
+    <ClCompile Include="__Sparse.cpp" />
+    <ClCompile Include="__Splat.cpp" />
+    <ClCompile Include="__Test.cpp" />
+    <ClCompile Include="__Utils.cpp" />
+    <ClCompile Include="__Willow.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
